@@ -221,6 +221,8 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
 
         mZoomableView.setX(mTargetViewCords.x);
         mZoomableView.setY(mTargetViewCords.y);
+        mZoomableView.setPivotX(mInitialPinchMidPoint.x);
+        mZoomableView.setPivotY(mInitialPinchMidPoint.y);
 
         if (mShadow == null) mShadow = new View(mTarget.getContext());
         mShadow.setBackgroundResource(0);
