@@ -70,6 +70,12 @@ public class Zoomy {
             return this;
         }
 
+        public Builder config(ZoomyConfig config) {
+            checkNotDisposed();
+            mConfig = config;
+            return this;
+        }
+
         public Builder interpolator(Interpolator interpolator) {
             checkNotDisposed();
             this.mZoomInterpolator = interpolator;

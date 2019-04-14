@@ -125,9 +125,11 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
                         mState = STATE_POINTER_DOWN;
                         break;
                     case STATE_POINTER_DOWN:
-                        mState = STATE_ZOOMING;
-                        MotionUtils.midPointOfEvent(mInitialPinchMidPoint, ev);
-                        startZoomingView(mTarget);
+                        if (mConfig.isZoomEnabled()) {
+                            mState = STATE_ZOOMING;
+                            MotionUtils.midPointOfEvent(mInitialPinchMidPoint, ev);
+                            startZoomingView(mTarget);
+                        }
                         break;
                 }
                 break;
@@ -189,7 +191,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
                     mScaleFactor = scaleStart + animation.getAnimatedFraction() * (1f - scaleStart);
                     mZoomableView.setScaleX(mScaleFactor);
                     mZoomableView.setScaleY(mScaleFactor);
-                    obscureDecorView(mScaleFactor >= 1 ? mScaleFactor: 1);
+                    obscureDecorView(mScaleFactor >= 1 ? mScaleFactor : 1);
                 }
             });
             animator.addListener(new AnimatorListenerAdapter() {
